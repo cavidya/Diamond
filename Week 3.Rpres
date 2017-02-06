@@ -1,0 +1,32 @@
+
+========================================================
+author: Vidya Cuddalore Arivudainambi
+date: February 5, 2017
+autosize: true
+
+Diamond Carat and Price
+========================================================
+
+-Plot designed to study the price of diamonds based on their clarity and carat
+
+Coding
+========================================================
+library(plotly)
+library(shiny)
+library(htmlwidgets)
+library(htmltools)
+set.seed(100)
+
+Plot
+========================================================
+
+```{r, echo=TRUE}
+library(plotly)
+library(shiny)
+set.seed(100)
+d <- diamonds[sample(nrow(diamonds), 1000), ]
+p=plot_ly(d, x = ~carat, y = ~price, color = ~carat,
+    size = ~carat, text = ~paste("Clarity: ", clarity))
+htmlwidgets::saveWidget(as.widget(p), file = "demo.html")
+```
+<iframe src="demo.html" style="position:absolute;height:100%;width:100%"></iframe>
